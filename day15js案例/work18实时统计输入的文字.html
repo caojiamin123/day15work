@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work18实时统计输入的文字</title>
+	</head>
+	<body>
+		<input type="text" id="txt" name="" />
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var otxt=document.getElementById("txt");
+			
+			otxt.onkeydown=function(){
+				document.title=otxt.value.length;
+			}
+		}
+	</script>
+</html>

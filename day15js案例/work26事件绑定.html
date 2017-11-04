@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work26事件绑定</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function addEvent(obj,sev,fn){
+			if(obj.addEventListener){
+				return obj.addEventListener(sev,fn,false);
+			}else{
+				return obj.attachEvent("on"+sev,fn);
+			}	
+		}
+		
+		function removeEvent(obj,sev,fn){
+			if(obj.removeEvent(sev,fn,false)){
+				return obj.removeEventListener(sev,fn,false);
+			}else{
+				return obj.detachEvent("on"+sev,fn);
+			}
+		}
+	</script>
+</html>

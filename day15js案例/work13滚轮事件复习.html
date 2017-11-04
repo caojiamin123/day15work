@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>work13滚轮事件复习</title>
+		<style type="text/css">
+			#div{
+				width: 300px;
+				height: 300px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+	</body>
+		<script type="text/javascript">
+		window.onload=function(){
+			var odiv=document.getElementById("div");
+			
+			function addevent(obj,sev,fn){
+				if(obj.addEventListener){
+					return obj.addEventListener(sev,fn,false);
+				}else{
+					return obj.attachEvent("on"+sev,fn);
+				}
+			}
+			
+			function addWheel(obj,fn){
+				function wheel(ev){
+					var oevent=ev||event;
+					var bDown=true;
+					bDown=oevent.wheelDelta?oevent.wheelDelta>0:oevent.detail<0;
+					fn&&fn(bDown);
+					oevent.preventDefault&&oevent.preventDefault();
+					return false;
+				}
+				
+				if(window.navigator.userAgent.indexOf("Firefox")!=-1){
+					obj.addEventListener('DOMMouseScroll',wheel,false);
+				}else{
+					/*obj.onmousewheel=wheel;*/
+					addevent(obj,"mousewheel",wheel);
+				}
+			}
+			
+			
+			addWheel(odiv,function(bDown){
+				odiv.onmousewheel=null;
+				if(bDown){
+					odiv.style.height=odiv.offsetHeight-10+"px";
+				}else{
+					odiv.style.height=odiv.offsetHeight+10+"px";
+				}
+			})
+		}
+	</script>
+</html>

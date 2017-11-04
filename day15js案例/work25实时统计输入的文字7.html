@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work25实时统计输入的文字7</title>
+	</head>
+	<body>
+		<input type="text" id="txt" name="" />
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var otxt=document.getElementById("txt");
+			var timer=null;
+			
+			if(window.navigator.userAgent.indexOf("MSIE 9.0")!=-1){
+				otxt.onfocus=function(){
+					timer=setInterval(function(){
+						document.title=otxt.value.length;
+					},100);
+				}
+				otxt.blur=function(){
+					clearInterval(timer);
+				}
+			}else{
+				otxt.onpropertychange=otxt.oninput=function(){
+					document.title=otxt.value.length;
+				}
+			}
+		}
+	</script>
+</html>

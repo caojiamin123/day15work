@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work34拖拽滚动条改变div的透明度</title>
+		<style type="text/css">
+			#div {
+            width: 400px;
+            height: 30px;
+            background: #ccc;
+            margin:50px auto;
+            position: relative;
+	        }
+	        #bar {
+	            width: 50px;
+	            height: 30px;
+	            background: red;
+	            position: absolute;
+	            left: 0;
+	            top: 0;
+	        }
+	        #box{
+	            width:200px;
+	            height:200px;
+	            background:blue;
+	            opacity:0;
+	        }
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<div id="bar"></div>
+		</div>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var obar=document.getElementById("bar");
+			var odiv=document.getElementById("div");
+			var obox=document.getElementById("box");
+			
+			obar.onmousedown=function(ev){
+				var oevent=ev||event;
+				var disx=oevent.clientX-obar.offsetLeft;
+				
+				document.onmousemove=function(ev){
+					var oevent=ev||event;
+					var l=oevent.clientX-disx;
+					if(l<0){
+						l=0;
+					}else if(l>odiv.offsetWidth-obar.offsetWidth){
+						l=odiv.offsetWidth-obar.offsetWidth;
+					}
+					
+					var scale=l/(odiv.offsetWidth-obar.offsetWidth);
+					document.title=scale;
+					obox.style.opacity=scale;
+					obar.style.left=l+"px";
+				}
+				
+				document.onmouseup=function(){
+					document.onmousemove = null;
+                    document.onmouseup = null;
+                    obar.releaseCapture && obar.releaseCapture();
+				}
+				
+				obar.setCapture&&obar.setCapture();
+				return false;
+			}
+			
+		}
+	</script>
+</html>

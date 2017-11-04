@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work27拖拽</title>
+		<style type="text/css">
+			#div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var odiv=document.getElementById("div");
+			
+			odiv.onmousedown=function(ev){
+				var oevent=ev||event;
+				var disx=oevent.clientX-odiv.offsetLeft;
+				var disy=oevent.clientY-odiv.offsetTop;
+				
+				document.onmousemove=function(ev){
+					var oevent=ev||event;
+					var l=oevent.clientX-disx;
+					var t=oevent.clientY-disy;
+					odiv.style.left=l+"px";
+					odiv.style.top=t+"px";
+				}
+				
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					odiv.releaseCapture&&odiv.releaseCapture();
+				}
+				
+				odiv.setCapture&&odiv.setCapture();
+				return false;
+				
+			}
+		}
+	</script>
+</html>

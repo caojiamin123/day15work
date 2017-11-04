@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>work10滚轮事件9</title>
+		<style type="text/css">
+			#div{
+				width: 400px;
+				height: 400px;
+				background: red;
+				margin: 50px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var odiv=document.getElementById("div");
+			
+			function wheel(ev){
+				var oevent=ev||event;
+				var bDown=true;
+				
+				if(oevent.wheelDelta>0){
+					bDown=oevent.wheelDelta>0;
+				}else{
+					bDown=oevent.detail>0;
+				}
+				
+				if(bDown){
+					odiv.style.height=odiv.offsetHeight-10+"px";
+				}else{
+					odiv.style.height=odiv.offsetHeight+10+"px";
+				}
+				
+				oevent.preventDefault&&oevent.preventDefault();
+				return false;
+			}
+			
+			if(window.navigator.userAgent.toLocaleLowerCase().indexOf("firefox")!=-1){
+				odiv.addEventListener('DOMMouseScroll',wheel,false)
+			}else{
+				odiv.onmousewheel=wheel;
+			}
+		}
+	</script>
+</html>

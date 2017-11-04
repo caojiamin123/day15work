@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work24实时统计输入的文字6</title>
+	</head>
+	<body>
+		<input type="text" id="txt" name="" />
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var otxt=document.getElementById("txt");
+			
+			if(window.navigator.userAgent.indexOf("MSIE 9.0")!=-1){
+				setInterval(function(){
+					document.title=otxt.value.length;
+				},100);
+			}else{
+				otxt.onpropertychange=otxt.oninput=function(){
+					document.title=otxt.value.length;
+				}
+			}
+		}
+	</script>
+</html>

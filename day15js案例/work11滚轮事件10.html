@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>work11滚轮事件10</title>
+		<style type="text/css">
+			#div{
+				width: 400px;
+				height: 400px;
+				background: red;
+				margin: 50px auto;
+			}
+		</style>
+	</head>
+	<body style="height: 3000px;">
+		<div id="div"></div>
+	</body>
+	<script src="addWheel.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var odiv=document.getElementById("div");
+			
+			addWheel(odiv,function(bDown){
+				odiv.onmousewheel=null;
+				if(bDown){
+					odiv.style.height=odiv.offsetHeight-10+"px";
+				}else{
+					odiv.style.height=odiv.offsetHeight+10+"px";
+				}
+			})
+		}
+	</script>
+</html>

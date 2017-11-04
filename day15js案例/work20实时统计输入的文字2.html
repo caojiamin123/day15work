@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>work20实时统计输入的文字2</title>
+	</head>
+	<body>
+		<input type="text" id="txt" name="" />
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var otxt=document.getElementById("txt");
+			
+			otxt.onchange=function(){
+				document.title=otxt.value.length;
+			}
+		}
+	</script>
+</html>

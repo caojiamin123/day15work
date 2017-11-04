@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>work7滚轮事件6</title>
+		<style type="text/css">
+			#div{
+				width: 400px;
+				height: 400px;
+				background: red;
+				margin: 50px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var odiv=document.getElementById("div");
+			
+			function wheel(ev){
+				var oevent=ev||event;
+				if(oevent.wheelDelta){
+					if(oevent.wheelDelta>0){
+						alert("上");
+					}else{
+						alert("下");
+					}
+				}else{
+					if(oevent.detail>0){
+						alert("下");
+					}else{
+						alert("上");
+					}
+				}
+			}
+			
+			if(window.navigator.userAgent.toLocaleLowerCase().indexOf("firefox")!=-1){
+				odiv.addEventListener('DOMMouseScroll',wheel,false)
+			}else{
+				odiv.onmousewheel=wheel;
+			}
+		}
+	</script>
+</html>
